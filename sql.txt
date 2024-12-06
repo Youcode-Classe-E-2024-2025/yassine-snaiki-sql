@@ -1,0 +1,46 @@
+create database librairie;
+use librairie;
+
+create table livres (
+    id int auto_increment primary key,
+    titre varchar(255) not null,
+    auteur varchar(255) not null,
+    prix decimal(5,2) not null,
+    stock int not null
+);
+
+create table clients (
+    id int auto_increment primary key,
+    nom varchar(255) not null,
+    email varchar(255) not null unique,
+    date_inscription date not null
+);
+
+insert into livres (titre, auteur, prix, stock)
+values 
+('les misérables', 'victor hugo', 20.50, 12),
+('le petit prince', 'antoine de saint-exupéry', 15.99, 5),
+('1984', 'george orwell', 18.00, 8),
+('harry potter et la pierre philosophale', 'j.k. rowling', 25.00, 10);
+
+insert into clients (nom, email, date_inscription)
+values 
+('jean dupont', 'jean.dupont@email.fr', '2024-01-10'),
+('alice martin', 'alice.martin@email.fr', '2024-02-15'),
+('bob robert', 'bob.robert@email.fr', '2024-03-20');
+
+select * from livres;
+
+select * from livres where prix > 20;
+
+select * from clients where date_inscription > '2024-2-1';
+
+update livres
+set stock = stock - 1
+where titre = '1984';
+
+delete from clients
+where email = 'bob.robert@email.fr';
+
+insert into livres (titre, auteur, prix, stock)
+values ('le seigneur des anneaux', 'j.r.r. tolkien', 30.00, 7);
